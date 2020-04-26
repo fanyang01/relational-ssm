@@ -1,0 +1,110 @@
+#!/bin/bash
+
+python3 ./run.py \
+	--delete_existing \
+	--disable_eval \
+	--const_num_nodes 36 \
+	--trans_mlp_num_layers 1 \
+	--trans_ar=False \
+	--trans_skip_conn=False \
+	--trans_scale_activation softplus \
+	--trans_scale_shift 0.0 \
+	--trans_activation tanh \
+	--trans_global_low_rank 0 \
+	--trans_local_low_rank 0 \
+	--trans_layer_norm=False \
+	--trans_flow_num_layers 0 \
+	--emit_low_rank 0 \
+	--emit_identity=False \
+	--emit_non_markov \
+	--emit_mix_num_components 1 \
+	--emit_mlp_num_layers 1 \
+	--emit_scale_activation softplus \
+	--emit_scale_shift 0.0 \
+	--emit_scale_identical=False \
+	--proposal joint \
+	--proposal_loc_activation tanh \
+	--proposal_loc_layer_norm=False \
+	--proposal_flow_num_layers 0 \
+	--reuse_gen_flow=False \
+	--denoising=False \
+	--noise_scale 0.0 \
+	--noise_scale_min_ratio 0.005 \
+	--noise_scale_decay_steps 30000 \
+	--use_skip_conn \
+	--use_gated_adder \
+	--use_belief \
+	--use_lookahead=False \
+	--interleaving \
+	--interleaving_randomly \
+	--interleaving_rate 1.1 \
+	--interleaving_rate_min_ratio 1.0 \
+	--interleaving_decay_steps 5000 \
+	--prefixing \
+	--prefix_length 9999 \
+	--aux_task mix \
+	--aux_weight 0.05 \
+	--aux_weight_min_ratio 1.0 \
+	--aux_weight_decay_steps 20000 \
+	--aux_cpc_state z \
+	--aux_zf_scale 0.0 \
+	--aux_cpc_scale 1.0 \
+	--aux_mask_scale 1.0 \
+	--aux_dgi_scale 0.0 \
+	--aux_mask_all_node_at_once \
+	--his=False \
+	--his_num_leapfrog_steps 1 \
+	--his_max_step_size 0.5 \
+	--learning_rate 0.001 \
+	--learning_rate_min_ratio 0.01 \
+	--learning_rate_init_variance 1.0 \
+	--learning_rate_variance_decay 0.75 \
+	--decay_steps 100000 \
+	--clip_gradient \
+	--clip_threshold 1.0 \
+	--reuse_batch=False \
+	--train_obj vsmc \
+	--analytic_kl=False \
+	--vsmc_resample_impl multinomial \
+	--train_batch_size 16 \
+        --num_samples 4 \
+	--train_on_rand_win=False \
+	--rand_win_size_lo 24 \
+	--rand_win_size_hi 24 \
+	--eval_steps 80000 \
+	--eval_batch_size 128 \
+	--eval_win_size 0 \
+	--eval_stride 0 \
+	--pred_steps 200 \
+	--pred_every_step=False \
+	--train_num_pred_samples 16 \
+	--train_num_pred_steps 5 \
+	--train_num_pred_samples 4 \
+	--eval_num_samples 4 \
+	--eval_num_pred_samples 4 \
+	--eval_num_pred_steps 5 \
+	--num_preview_steps 0 \
+	--preview_loss_weight 0.0 \
+	--dataset ./datasets/toy-10000 \
+	--dataset_type diff \
+	--zscore=False \
+	--save_steps 200 \
+	--num_steps 100000 \
+	--mini_batch=False \
+	--rnn_num_layers 1 \
+	--dim_hidden 32 \
+	--dim_latent 8 \
+	--dim_mlp 64 \
+	--gnn_attention softmax \
+	--gnn_impl dense \
+	--trans_gnn_num_layers 2 \
+	--proposal_gnn_num_layers 2 \
+	--gnn_recurrent=False \
+	--gnn_layer_norm_in=False \
+	--gnn_layer_norm_out=False \
+	--gnn_combiner lstm \
+	--gnn_num_heads 4 \
+	--gnn_dim_key 16 \
+	--gnn_dim_value 16 \
+	--gnn_messenger unary \
+	--gnn_activation tanh 
